@@ -11,7 +11,7 @@ var webpack = require('webpack');
 module.exports = {
 
   output: {
-    publicPath: '/assets/',
+    publicPath: 'assets/',
     path: 'dist/assets/',
     filename: 'main.js'
   },
@@ -27,10 +27,17 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.DedupePlugin(),
+    //new webpack.optimize.UglifyJsPlugin({
+     //minimize: true,
+      //compress: {
+       // warnings: false,
+       // },
+    //}),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    
   ],
 
   resolve: {
@@ -59,7 +66,7 @@ module.exports = {
       test: /\.scss/,
       loader: 'style-loader!css-loader!autoprefixer-loader?{browsers:["last 2 version"]}!sass-loader?outputStyle=expanded'
     }, {
-      test: /\.(png|jpg|woff|woff2)$/,
+      test: /\.(png|jpg|woff|woff2|eot|ttf|svg)$/,
       loader: 'url-loader?limit=8192'
     }]
   }
